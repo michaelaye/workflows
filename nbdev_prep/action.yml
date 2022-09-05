@@ -1,4 +1,4 @@
-name: "nbdev-prep"
+name: "nbdev prep"
 description: "Prepare doc creation with nbdev"
 inputs:
   pre:
