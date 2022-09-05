@@ -37,7 +37,7 @@ runs:
         echo "installed latest nbdev tools"
 
     - name: Install latest released only
-      if: ${{ inputs.pre == "false" }}
+      if: ${{ !inputs.pre}}
       shell: bash
       run: |
         pip install -Uq nbdev
