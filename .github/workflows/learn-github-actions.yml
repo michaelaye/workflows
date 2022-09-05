@@ -1,12 +1,13 @@
 name: learn-github-actions
-on: [push]
+on: workflow_dispatch:
+  inputs:
+    build_id:
+      required: true
+      type: string
+
 jobs:
-  check-bats-version:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "14"
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Echo build id
+        run: echo inputs.build_id
