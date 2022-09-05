@@ -4,7 +4,7 @@ inputs:
   pre:
     description: "Install prerelease nbdev/execnb from master?"
     required: false
-    type: string
+    type: boolean
     default: false
   ghtoken:
     description: "GitHub token"
