@@ -1,13 +1,13 @@
-name: learn-github-actions
-on: workflow_dispatch:
-  inputs:
-    build_id:
-      required: true
-      type: string
+on:
+  workflow_dispatch:
+    inputs:
+      build_id:
+        required: true
+        type: string
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo build id
-        run: echo inputs.build_id
+      - name: Echo build-id to target
+        run: echo ${{ inputs.build_id }}
