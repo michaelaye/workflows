@@ -37,3 +37,10 @@ runs:
           pip install -Uq nbdev
           echo "installed latest nbdev release"
         fi
+
+    - name: Install quarto
+      shell: bash
+      run: |
+        wget -nv https://www.quarto.org/download/latest/quarto-linux-amd64.deb
+        sudo dpkg -i quarto*.deb
+        echo "installed quarto"
