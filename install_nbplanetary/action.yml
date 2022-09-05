@@ -4,6 +4,7 @@ runs:
   using: "composite"
   steps:
     - name: Install GDAL
+      shell: bash
       run: |
         sudo apt-add-repository ppa:ubuntugis/ubuntugis-unstable
         sudo apt-get update
