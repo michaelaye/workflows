@@ -28,6 +28,8 @@ runs:
           pip install -Uq git+https://github.com/fastai/fastcore.git
           pip install -Uq git+https://github.com/fastai/execnb.git
           pip install -Uq git+https://github.com/fastai/nbdev.git
+          echo "installed latest nbdev tools"
         else
           pip install -Uq nbdev
+          echo "installed latest nbdev release"
         fi
