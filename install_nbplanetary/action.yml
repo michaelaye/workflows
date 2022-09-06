@@ -3,12 +3,22 @@ description: "Install nbplanetary and dependencies via pip"
 runs:
   using: "composite"
   steps:
+    - name: Install Conda environment from environment.yml
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        channels: conda-forge
+        environment-file: ""
+        extra-specs: ""
     - name: Install GDAL
-      shell: bash
-      run: |
-        sudo apt-add-repository ppa:ubuntugis/ubuntugis-unstable
-        sudo apt-get update
-        sudo apt-get install gdal-bin libgdal-dev
-        pip install GDAL==3.2.3
-        pip install jupyter
-        pip install -e .
+      uses: jannekem/run-python-script-action@v1
+      with:
+        script: |
+          from configparser import ConfigParser
+          import subprocess
+          config = ConfigParser(delimiters=['='])
+          config.read('settings.ini')
+          cfg = config['DEFAULT']
+          requirements = cfg.get('requirements', '')
+          cmd = "mamba install " + requirements
+          ret = subprocess.call(cmd, shell=True)
+          print("returned_value:", ret)
