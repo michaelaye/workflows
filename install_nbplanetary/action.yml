@@ -33,3 +33,6 @@ runs:
           print("Command to run:", cmd)
           ret = subprocess.call(cmd, shell=True)
           print("returned_value:", ret)
+    - name: Install package
+      shell: bash
+      run: pip install -e ".[dev]"
