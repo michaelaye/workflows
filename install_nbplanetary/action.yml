@@ -3,12 +3,19 @@ description: "Install nbplanetary and dependencies via pip"
 runs:
   using: "composite"
   steps:
-    - name: Install Conda environment from environment.yml
-      uses: mamba-org/provision-with-micromamba@main
+    - name: setup-conda
+      # You may pin to the exact commit or the version.
+      # uses: s-weigand/setup-conda@12b718b536e4be4da931f6d0fcfcc40a646ffed9
+      uses: s-weigand/setup-conda@v1.1.1
       with:
-        channels: conda-forge
-        environment-file: ""
-        extra-specs: ""
+        # Whether to activate the conda base env (Default: 'true')
+        activate-conda: # optional, default is true
+        # If conda should be updated before running other commands (Default: 'false')
+        update-conda: # optional, default is false
+        # Python version which should be installed with conda (default: 'Default')
+        python-version: "3.10" # optional, default is default
+        # Additional channels like 'conda-forge' which can be used to install packages
+        conda-channels: "conda-forge" # optional, default is
     - name: Install GDAL
       uses: jannekem/run-python-script-action@v1
       with:
@@ -19,6 +26,6 @@ runs:
           config.read('settings.ini')
           cfg = config['DEFAULT']
           requirements = cfg.get('requirements', '')
-          cmd = "mamba install " + requirements
+          cmd = "conda install -y" + requirements
           ret = subprocess.call(cmd, shell=True)
           print("returned_value:", ret)
