@@ -16,6 +16,9 @@ runs:
         python-version: "3.10" # optional, default is default
         # Additional channels like 'conda-forge' which can be used to install packages
         conda-channels: "conda-forge" # optional, default is
+    - name: Install mamba
+      shell: bash
+      run: conda install -c conda-forge mamba -y
     - name: Install GDAL
       uses: jannekem/run-python-script-action@v1
       with:
@@ -26,6 +29,6 @@ runs:
           config.read('settings.ini')
           cfg = config['DEFAULT']
           requirements = cfg.get('requirements', '')
-          cmd = "conda install -y" + requirements
+          cmd = "mamba install" + requirements + " -y"
           ret = subprocess.call(cmd, shell=True)
           print("returned_value:", ret)
